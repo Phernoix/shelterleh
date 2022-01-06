@@ -10,7 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShelterLeh">
         <activity
-            android:name=".splashscreen"
+            android:name=".Main"
+            android:theme="@style/Theme.ShelterLeh.NoActionBar"
+            android:exported="false" />
+        <activity
+            android:name=".Splashscreen"
+            android:theme="@style/Theme.ShelterLeh.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
