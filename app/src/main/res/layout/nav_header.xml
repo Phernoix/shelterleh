@@ -9,9 +9,9 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/profile_pic" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,7 +23,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Placeholder text" />
+        android:text="Placeholder text"
+        android:fontFamily="@font/poppins_regular"/>
 
 
 </LinearLayout>
