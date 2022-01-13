@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view"
 
+>
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="Home"
-            android:fontFamily="@font/poppins_regular"
             android:textColor="@color/grey"
             />
         <item
             android:id="@+id/nav_contact"
             android:icon="@drawable/ic_contact"
             android:title="Contact me"
-            android:fontFamily="@font/poppins_regular"
             android:textColor="@color/grey"
             />
         <item
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_help"
             android:title="Help"
-            android:fontFamily="@font/poppins_regular"
             android:textColor="@color/grey"
 
             />
@@ -30,7 +30,6 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
             android:title="Settings"
-            android:fontFamily="@font/poppins_regular"
             android:textColor="@color/grey"
 
             />
