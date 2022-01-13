@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,25 +9,71 @@
         android:id="@+id/empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Press the GPS button to start!"
-        android:padding="10dp"
-        android:textSize="20dp"
+        android:layout_centerInParent="true"
         android:fontFamily="@font/poppins_italic"
-        android:layout_centerInParent="true"/>
+        android:padding="10dp"
+        android:text="Press the Add button to start!"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/gpsButton"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        android:elevation="4dp"
-        android:onClick="gpsClick"
-        app:srcCompat="@android:drawable/ic_menu_mylocation"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Actions"
+        app:icon="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/input_location_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         app:fabSize="normal"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/addButton"
+        app:layout_constraintEnd_toEndOf="@+id/addButton"
+        app:srcCompat="@drawable/ic_keyboard" />
+    <TextView
+        android:id="@+id/input_location_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Input location"
+        app:layout_constraintBottom_toBottomOf="@+id/input_location_fab"
+        app:layout_constraintEnd_toStartOf="@+id/input_location_fab"
+        app:layout_constraintTop_toTopOf="@+id/input_location_fab"
+        android:fontFamily="@font/poppins_italic"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/current_location_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/input_location_fab"
+        app:layout_constraintEnd_toEndOf="@+id/input_location_fab"
+        app:layout_constraintStart_toStartOf="@+id/input_location_fab"
+        app:srcCompat="@drawable/ic_gps" />
+    <TextView
+        android:id="@+id/current_location_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Use current location"
+        app:layout_constraintBottom_toBottomOf="@+id/current_location_fab"
+        app:layout_constraintEnd_toStartOf="@+id/current_location_fab"
+        app:layout_constraintTop_toTopOf="@+id/current_location_fab"
+        android:fontFamily="@font/poppins_italic"/>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
