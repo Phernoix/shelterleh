@@ -39,6 +39,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 new HomeFragment()).commit();
         navigationView.setCheckedItem(R.id.nav_home);}
 
+
     }
 
     @Override
@@ -73,4 +74,5 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             super.onBackPressed();
         }
     }
+
 }

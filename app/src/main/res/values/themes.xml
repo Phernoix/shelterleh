@@ -21,4 +21,17 @@
 
 
     </style>
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="button">
+        <item name="cornerSizeTopLeft">70%</item>           //can specify corner position
+        <!--<item name="cornerFamilyTopLeft">cut</item>-->
+        <item name="cornerSizeBottomRight">70%</item>
+        <item name="cornerSizeBottomLeft">70%</item>
+        <item name="cornerSizeTopRight">70%</item>           //can specify corner position
+
+        <!--<item name="cornerFamilyBottomRight">cut</item>-->
+    </style>
 </resources>
