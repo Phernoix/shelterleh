@@ -1,8 +1,15 @@
 package com.sp.shelterleh;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,6 +33,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private LatLng ME;
+    private LocationListener locationListener;
+    private LocationManager locationManager;
+    private final long MIN_TIME =5000;
+    private final long MIN_DIST =5;
+    private LatLng latLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +49,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PackageManager.PERMISSION_GRANTED);
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PackageManager.PERMISSION_GRANTED);
+
     }
 
     /**
@@ -64,15 +80,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-        LatLng cck = new LatLng(1.381600, 103.740360);
-        mMap.addMarker(new MarkerOptions().position(cck).title("Marker in CCK"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(cck));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cck,15));
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
 
-        /* Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-         */
+                latLng =new LatLng(location.getLatitude(),location.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(latLng).title("Current Location"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+                try {
+                    latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+                    mMap.addMarker(new MarkerOptions().position(latLng).title("My Current Position"));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                }
+                catch (SecurityException e){
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+            }
+        };
+        try {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DIST, locationListener);
+        }
+        catch (SecurityException e){
+            e.printStackTrace();
+        }
+
     }
 }
