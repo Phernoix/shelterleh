@@ -84,15 +84,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onLocationChanged(Location location) {
 
-                latLng =new LatLng(location.getLatitude(),location.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(latLng).title("Current Location"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-
                 try {
                     latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
                     mMap.addMarker(new MarkerOptions().position(latLng).title("My Current Position"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                    mMap.animateCamera(CameraUpdateFactory.zoomIn());
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
                 }
                 catch (SecurityException e){
                     e.printStackTrace();
@@ -114,12 +113,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         };
+        
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         try {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DIST, locationListener);
         }
         catch (SecurityException e){
             e.printStackTrace();
         }
-
     }
 }
