@@ -43,7 +43,7 @@
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="@+id/addButton"
-        app:srcCompat="@drawable/ic_keyboard" />
+        app:srcCompat="@drawable/ic_search" />
 
     <TextView
         android:id="@+id/input_location_text"
