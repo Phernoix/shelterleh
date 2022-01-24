@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/circle.xml" value="0.2703125" />
+        <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/ic_add.xml" value="0.12685185185185185" />
+        <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/ic_add_location.xml" value="0.12685185185185185" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.13229166666666667" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/ic_button.xml" value="0.2703125" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/ic_button2.xml" value="0.2703125" />
@@ -12,12 +14,14 @@
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/ic_home.xml" value="0.2703125" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/ic_popupbutton.xml" value="0.2703125" />
+        <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/ic_search.xml" value="0.12685185185185185" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/ic_settings.xml" value="0.2703125" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/profile_img.xml" value="0.2703125" />
+        <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/drawable/white_border.xml" value="0.2703125" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/font/poppins_regular.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/layout/activity_map_search.xml" value="0.2" />
-        <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/layout/activity_maps.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/layout/activity_maps.xml" value="0.4742468415937804" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/layout/activity_splashscreen.xml" value="0.176" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/layout/fragment_contact.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/eklas/AndroidStudioProjects/ShelterLeh/app/src/main/res/layout/fragment_help.xml" value="0.25416666666666665" />
