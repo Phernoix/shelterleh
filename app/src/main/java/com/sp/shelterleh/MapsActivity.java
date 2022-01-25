@@ -1,51 +1,47 @@
 package com.sp.shelterleh;
 
 import android.Manifest;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.OnConnectionFailedListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.sp.shelterleh.R;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.RectangularBounds;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
-import com.sp.shelterleh.databinding.ActivityMapsBinding;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.Arrays;
+
+import com.google.android.libraries.places.api.Places;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
+        OnConnectionFailedListener {
 
     private static final String TAG = "MapsActivity" ;
     private GoogleMap mMap;
@@ -55,15 +51,72 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private final static int PLACE_PICKER_REQUEST = 999;
     private final static int LOCATION_REQUEST_CODE = 23;
     //widgets
-    private EditText mSearchText;
+    private AutoCompleteTextView mSearchText;
+
+    private AutocompleteSessionToken autocompleteSessionToken;
+
+
+
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        mSearchText = (EditText) findViewById(R.id.input_search);
+        autocompleteSessionToken= AutocompleteSessionToken.newInstance();
 
-        init();
+        String apiKey = getString(R.string.google_maps_key);
+
+        if(!Places.isInitialized()){
+            Places.initialize(getApplicationContext(),apiKey);
+        }
+
+        PlacesClient placesClient = Places.createClient(this);
+
+        /**
+         * Initialize Places. For simplicity, the API key is hard-coded. In a production
+         * environment we recommend using a secure mechanism to manage API keys.
+         */
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), "YOUR_API_KEY");
+        }
+
+        // Initialize the AutocompleteSupportFragment.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        autocompleteFragment.setLocationBias(RectangularBounds.newInstance(
+                new LatLng(1.1304753,103.6920359),
+                new LatLng(1.4504753,104.0120359)
+        ));
+
+        autocompleteFragment.setCountries("SG");
+
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG));
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+                mMap.addMarker(new MarkerOptions().position(place.getLatLng()));
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
+                        place.getLatLng(), 16f);
+                mMap.animateCamera(cameraUpdate);
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
+
+
 
         Log.d("Location", "Begin code");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -73,46 +126,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LOCATION_REQUEST_CODE);
     }
     
-    private void init(){
-        Log.d(TAG,"init:initializing");
 
-        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent keyEvent) {
-                if(actionId == EditorInfo.IME_ACTION_SEARCH
-                            || actionId == EditorInfo.IME_ACTION_DONE
-                            || keyEvent.getAction() == KeyEvent.ACTION_DOWN
-                            || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER){
 
-                    geoLocate();
-                }
 
-                return false;
-            }
-        });
-    }
-
-    private void geoLocate() {
-        Log.d(TAG, "geoLocate: geolocating");
-
-        String searchString = mSearchText.getText().toString();
-
-        Geocoder geocoder = new Geocoder(MapsActivity.this);
-        List<Address> list = new ArrayList<>();
-        try {
-            list = geocoder.getFromLocationName(searchString, 1);
-        } catch (IOException e) {
-            Log.e(TAG, "geoLocate:IOException : " + e.getMessage());
-        }
-
-        if(list.size() >0){
-            Address address = list.get(0);
-
-            Log.d(TAG, "geoLocate: found a location:" + address.toString());
-
-            //Toast.makeText(this, Toast.LENGTH_SHORT).show();
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -178,7 +194,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }
 
-        init();
-
     }
+
+
 }
