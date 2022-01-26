@@ -2,9 +2,8 @@
 
 # What does this app do?
 
-It allows you to see shelters around Singapore by either using current location or searching any location within Singapore
-
-currently the shelters recorded by the government is missing alot of shelters so this app is very inaccurate.
+It allows you to see shelters around Singapore by either using current location or searching any location within Singapore.
+Currently the shelters recorded by the government is missing alot of shelters so this app is very inaccurate.
 
 # planned features
 
