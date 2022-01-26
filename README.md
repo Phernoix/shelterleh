@@ -1,4 +1,4 @@
-# shelterleh
+# ShelterLeh!
 
 # What does this app do?
 
