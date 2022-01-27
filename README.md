@@ -6,9 +6,14 @@ It allows you to see shelters around Singapore by either using current location 
 
 Currently the shelters recorded by the government is missing alot of shelters so this app is very inaccurate. Deal with it I guess ¯\\\_(ツ)_/¯
 
+## Current features
+
+- Show current location and shelters around you
+- Search any locations within Singapore
+
 ## Planned features
 
-Provide a route to a location
+- Provide a route to a location
 
 ## Prototype
 
