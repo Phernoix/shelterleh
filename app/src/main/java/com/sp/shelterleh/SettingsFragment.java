@@ -29,14 +29,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         PreferenceScreen screen = getPreferenceScreen();
         final ListPreference listPreference = (ListPreference) findPreference("theme");
-        Preference preference = (Preference) findPreference("notq");
-        int api = Integer.valueOf(android.os.Build.VERSION.SDK_INT);
-        if (api > 28) {
-            screen.removePreference(preference);
-        }
-        if (api < 29) {
-            screen.removePreference(listPreference);
-        }
         listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {

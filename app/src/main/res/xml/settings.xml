@@ -15,12 +15,6 @@
             app:key="theme"
             app:title="Theme"
             app:useSimpleSummaryProvider="true" />
-        <Preference
-            android:id="@+id/notq"
-            app:key="notq"
-            app:title="Dark Mode"
-            app:summary="Dark Mode under construction for Android Pie and below"
-            />
 
     </PreferenceCategory>
     <PreferenceCategory
