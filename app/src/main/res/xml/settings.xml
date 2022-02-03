@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="General">
+
+
+        <ListPreference
+            android:id="@+id/list"
+            app:entries="@array/theme_entries"
+            app:entryValues="@array/theme_values"
+            app:key="theme"
+            app:title="Theme"
+            app:useSimpleSummaryProvider="true" />
+        <Preference
+            android:id="@+id/notq"
+            app:key="notq"
+            app:title="Dark Mode"
+            app:summary="Dark Mode under construction for Android Pie and below"
+            />
+
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="About">
+        <Preference
+            android:key="version"
+            android:title="Version"
+            android:summary="1.0.0"
+        />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
