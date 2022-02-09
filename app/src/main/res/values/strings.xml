@@ -17,4 +17,12 @@
         <item>dark</item>
         <item>default1</item>
     </string-array>
+
+    <string-array name="random_tip">
+        <item>Remember to drink at least 8 cups of water to stay hydrated!</item>
+        <item>Try to avoid the sun as to protect your skin! Find shelters now!  </item>
+        <item>Walking in the rain isn\'t safe for you! Find shelters now!</item>
+        <item>Always wear sunscreen and make it a habit!</item>
+        <item>No umbrella? No problem, find shelters now!</item>
+    </string-array>
 </resources>

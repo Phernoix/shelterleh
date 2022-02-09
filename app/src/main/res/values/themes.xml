@@ -19,9 +19,9 @@
         <item name = "windowActionBar">false</item>
         <item name = "windowNoTitle">true</item>
         <item name = "android:statusBarColor">@android:color/transparent</item>
-
-
     </style>
+
+
     <style name="roundedImageViewRounded">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>

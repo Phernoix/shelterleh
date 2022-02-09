@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Splashscreen"
     android:background="@color/bluePrimary"
-    style="@style/Theme.ShelterLeh">
+    style="@style/Theme.ShelterLeh.NoActionBar">
 
     <ImageView
         android:id="@+id/imageView2"

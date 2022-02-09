@@ -15,11 +15,14 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Random;
+
 public class HomeFragment extends Fragment {
     ExtendedFloatingActionButton addFab;
     FloatingActionButton inputFab, currentFab;
-    TextView inputText, currentText;
+    TextView inputText, currentText, random_text;
     Boolean isAllFabsVisible;
+    private String[] randomTip;
 
     @Nullable
     @Override
@@ -29,6 +32,7 @@ public class HomeFragment extends Fragment {
         addFab = v.findViewById(R.id.addButton);
         inputFab = v.findViewById(R.id.input_location_fab);
         currentFab = v.findViewById(R.id.current_location_fab);
+        random_text =v.findViewById(R.id.randomText);
 
         inputText = v.findViewById(R.id.input_location_text);
         currentText = v.findViewById(R.id.current_location_text);
@@ -41,6 +45,15 @@ public class HomeFragment extends Fragment {
         isAllFabsVisible = false;
 
         addFab.shrink();
+
+        randomTip = getResources().getStringArray(R.array.random_tip);
+
+        int randomIndex = new Random().nextInt(randomTip.length);
+        String randomName = randomTip[randomIndex];
+        random_text.setText(randomName);
+
+
+
 
         addFab.setOnClickListener(
                 new View.OnClickListener() {
@@ -73,7 +86,8 @@ public class HomeFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(), "Location Inputted!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), MapsActivity.class);
+                        startActivity(intent);
                     }
                 });
         currentFab.setOnClickListener(
