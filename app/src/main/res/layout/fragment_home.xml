@@ -28,7 +28,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/poppins"
             android:padding="10dp"
-            android:text="Tip of the day!"
+            android:text="Tip of the day"
             android:textColor="@color/white"
             android:textSize="32dp" />
 
