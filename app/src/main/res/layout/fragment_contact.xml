@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="400dp"
+        android:layout_width="380dp"
         android:layout_height="330dp"
         android:background="@drawable/white_border"
         android:elevation="10dp"
@@ -51,7 +51,7 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="400dp"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="332dp"
         android:background="@drawable/white_border"
@@ -62,12 +62,6 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
 
     <ImageView
         android:id="@+id/email"
